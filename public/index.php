@@ -1,15 +1,5 @@
 <?php
 
-include '../models/ContactMessage.php';
-
-var_dump(ContactMessage::getAll());
-
-
-exit;
-
-
-
-
 $APP['METHOD'] = $_SERVER['REQUEST_METHOD'];
 
 $pos = strpos($_SERVER['REQUEST_URI'], '?');
