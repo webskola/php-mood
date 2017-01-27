@@ -35,11 +35,27 @@ class ContactMessage {
     }
 
     static function getById($row_nr) {
-        $content = file_get_contents('../database/contact_messages.txt');
-        $rows = explode("\n", $content);
-        $row = $rows[$row_nr - 1];
-        $cm = $this->create($row);
-        return $cm;
+        $cur_row = 1;
+        $is_found = false;
+        $fp = @fopen('../database/contact_messages.txt', 'r');
+        if ($fp) {
+            while ($row = fgets($fp)) {
+                if ($cur_row === $row_nr) {
+                    $is_found = true;
+                    break;
+                }
+                $cur_row++;
+            }
+            fclose($fp);
+        } else {
+            echo 'error';
+        }
+
+        if ($is_found) {
+            $cm = self::create($row);
+            return $cm;
+        }
+        return false;
     }
 
     static function getAll() {

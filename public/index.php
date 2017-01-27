@@ -1,5 +1,12 @@
 <?php
 
+include '../classes/App.php';
+
+$app = new App;
+
+$app->setLocale();
+
+
 $APP['METHOD'] = $_SERVER['REQUEST_METHOD'];
 
 $pos = strpos($_SERVER['REQUEST_URI'], '?');

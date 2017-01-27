@@ -5,11 +5,12 @@
 include '../functions/html.lib.php';
 
 function home_controller() {
+    global $app;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         post_contact_us($_POST);
     }
 
-    $menu_lang = include '../lang/lv/menu.lang.php';
+    $menu_lang = include '../lang/' . $app->getLocale() . '/menu.lang.php';
     $menu_cfg = include '../config/menu.config.php';
     $title = 'Hello, World';
 
